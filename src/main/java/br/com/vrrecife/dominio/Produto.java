@@ -1,7 +1,5 @@
 package br.com.vrrecife.dominio;
 
-import java.util.Date;
-
 public class Produto {
 
 	private int Codigo;
@@ -9,7 +7,7 @@ public class Produto {
 	private String produtoDescricao;
 	private String produtoDescricaoNota;
 	private String produtoDescricaoFornecedor;
-	private int produtoDiasValidade;
+	private String produtoDiasValidade;
 	private double embalagemUnitariaPesoBruto;
 	private double embalagemUnitariaPesoLiquido;
 	private double embalagemUnitariaAltura;
@@ -119,11 +117,11 @@ public class Produto {
 		this.produtoDescricaoFornecedor = produtoDescricaoFornecedor;
 	}
 
-	public int getProdutoDiasValidade() {
+	public String getProdutoDiasValidade() {
 		return produtoDiasValidade;
 	}
 
-	public void setProdutoDiasValidade(int produtoDiasValidade) {
+	public void setProdutoDiasValidade(String produtoDiasValidade) {
 		this.produtoDiasValidade = produtoDiasValidade;
 	}
 

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS metaassessoria.prod
 	    produtoDescricao varchar(70),
 	    produtoDescricaoNota varchar(70),
 	    produtoDescricaoFornecedor varchar(70),
-	    produtoDiasValidade integer,
+	    produtoDiasValidade varchar(10),
 	    embalagemUnitariaPesoBruto numeric(18,2),
 	    embalagemUnitariaPesoLiquido numeric(18,2),
 	    embalagemUnitariaAltura numeric(18,2),

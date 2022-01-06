@@ -1,11 +1,7 @@
 package br.com.vrrecife.util;
 
-import java.io.IOException;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import br.com.vrrecife.dominio.Produto;
 
 public class Util {
 	 	 
@@ -38,10 +34,26 @@ public class Util {
 		 
 		 for(int i =0;i<json.getJSONArray("regrasTributarias").length();i++) {
 			 JSONObject j = json.getJSONArray("regrasTributarias").getJSONObject(i);
-			 if(j.getString("tribRegraCfop").substring(0, 1).equals("5")&& j.getString("TribRegraPerfilDestino").substring(0, 1).equals("CONSUMIDOR NAO CONTRIBUINTE")) {
+			 if(j.getString("tribRegraCfop").substring(0, 1).equals("5")&& j.getString("TribRegraPerfilDestino").equals("CONSUMIDOR NAO CONTRIBUINTE")) {
 				 dados = j;
 			 }else
-				 dados = json.getJSONArray("regrasTributarias").getJSONObject(i);
+				 dados = json.getJSONArray("regrasTributarias").getJSONObject(0);
+		 }
+
+		 return dados;
+	 }
+	 
+	 
+	 public static JSONObject retornaRegrasTributariasE(JSONObject json) {
+			
+		 JSONObject dados = null;
+		 
+		 for(int i =0;i<json.getJSONArray("regrasTributarias").length();i++) {
+			 JSONObject j = json.getJSONArray("regrasTributarias").getJSONObject(i);
+			 if(j.getString("tribRegraCfop").substring(0, 1).equals("1")&& j.getString("TribRegraPerfilDestino").equals("VAREJO LUCRO REAL")) {
+				 dados = j;
+			 }else
+				 dados = json.getJSONArray("regrasTributarias").getJSONObject(0);
 		 }
 
 		 return dados;

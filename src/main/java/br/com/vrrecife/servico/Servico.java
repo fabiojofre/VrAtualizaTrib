@@ -51,93 +51,78 @@ public class Servico {
 			 JSONObject produtos = new JSONObject(jsonEmString);
 			 
 			 
-			 JSONObject produto = produtos.getJSONObject("produto");
-////			 Extrai apenas o array do bloco dados logísticos do JSon se não estiver nulo  
-//			 JSONObject arrDadosLogisticos;
-//			 if(produtos.getJSONArray("dadosLogisticos").length()==0) {
-//				 arrDadosLogisticos = new JSONObject(log); //se tiver nulo tem um json pronto pra substituir
-//			 }else
-//			 arrDadosLogisticos = (JSONObject) produtos.getJSONArray("dadosLogisticos").get(0); 
-////			 Extrai apenas o array do bloco dados tributários do JSon 		
-//			 JSONObject arrDadosTributarios = (JSONObject) produtos.getJSONArray("dadosTributarios").get(0); 
-////			 Extrai apenas o array do bloco regras tributarias do JSon  
-//			 JSONObject arrRegrasTributarias = (JSONObject) produtos.getJSONArray("regrasTributarias").get(0); 
-//			 JSONObject arrRegrasTributariasE = (JSONObject) produtos.getJSONArray("regrasTributarias").get(1);
-//			 //retorno da consulta
-//			 
-//			 
-//			  p = new Produto();
-//			 
-//			 		p.setCodigo(produto.getInt("Codigo")); 
-//					p.setEAN(produto.getString("EAN")); 
-//					p.setProdutoDescricao(produto.getString("produtoDescricao")); 
-//					p.setProdutoDescricaoNota(produto.getString("produtoDescricaoNota"));
-//					p.setProdutoDescricaoFornecedor(produto.getString("produtoDescricaoFornecedor"));
-//					p.setProdutoDiasValidade(produto.getInt("produtoDiasValidade")); 
-//					p.setEmbalagemUnitariaPesoBruto(produto.getDouble("embalagemUnitariaPesoBruto")); 
-//					p.setEmbalagemUnitariaPesoLiquido(produto.getDouble("embalagemUnitariaPesoLiquido")); 
-//					p.setEmbalagemUnitariaAltura(produto.getDouble("embalagemUnitariaAltura")); 
-//					p.setEmbalagemUnitariaLargura(produto.getDouble("embalagemUnitariaLargura")); 
-//					p.setEmbalagemUnitariaProfundidade(produto.getDouble("embalagemUnitariaProfundidade")); 
-//					p.setEmbalagemUnitariaId(produto.getInt("embalagemUnitariaId")); 
-//					p.setEmbalagemUnitariaDescricao(produto.getString("embalagemUnitariaDescricao")); 
-//					p.setEmbalagemUnitariaCapacidade(produto.getString("embalagemUnitariaCapacidade")); 
-//					p.setEmbalagemUnitariaUnidadeMedida(produto.getString("embalagemUnitariaUnidadeMedida")); 
-//					p.setEmbalagemUnitariaUnidadeMedida(produto.getString("embalagemUnitariaUnidadeSigla")); 
-//					p.setFabricanteId(produto.getInt("fabricanteId")); 
-//					p.setFabricanteNome(produto.getString("fabricanteNome")); 
-//					p.setFabricanteId(produto.getInt("fabricanteMarcaid")); 
-//					p.setFabricanteMarcaDescricao(produto.getString("fabricanteMarcaDescricao")); 
-//					p.setMercadologicaDepartamentoId(produto.getInt("mercadologicaDepartamentoId")); 
-//					p.setMercadologicaDepartamentoNome(produto.getString("mercadologicaDepartamentoNome")); 
-//					p.setMercadologicaSecaoId(produto.getInt("mercadologicaSecaoId")); 
-//					p.setMercadologicaSecaoNome(produto.getString("mercadologicaSecaoNome")); 
-//					p.setMercadologicaGrupoId(produto.getInt("mercadologicaGrupoId")); 
-//					p.setMercadologicaGrupoNome(produto.getString("mercadologicaGrupoNome")); 
-//					p.setMercadologicaSubgrupoId(produto.getInt("mercadologicaSubgrupoId")); 
-//					p.setMercadologicaSubgrupoNome(produto.getString("mercadologicaSubgrupoNome")); 
-//					p.setAtivo(produto.getInt("Ativo")); 
-//					p.setLogEmbalagem(arrDadosLogisticos.getString("logEmbalagem")); 
-//					p.setLogDum14(arrDadosLogisticos.getString("logDum14")); 
-//					p.setLogAlturaCm(arrDadosLogisticos.getDouble("logAlturaCm")); 
-//					p.setLogLarguraCm(arrDadosLogisticos.getDouble("logLarguraCm")); 
-//					p.setLogProfundidadeCm(arrDadosLogisticos.getDouble("logProfundidadeCm")); 
-//					p.setLogPesoKg(arrDadosLogisticos.getDouble("logPesoKg")); 
-//					p.setQtdEmbal(arrDadosLogisticos.getDouble("QtdEmbal")); 
-//					p.setLogQtdLastro(arrDadosLogisticos.getDouble("LogQtdLastro")); 
-//					p.setLogQtdCamadas(arrDadosLogisticos.getDouble("LogQtdCamadas")); 
-//					p.setTributarioNcm(arrDadosTributarios.getString("tributarioNcm")); 
-//					p.setTributarioCest(arrDadosTributarios.getString("tributarioCest")); 
-//					p.setTributarioFiguraFiscal(arrDadosTributarios.getString("tributarioFiguraFiscal")); 
-//					p.setCodigoBeneficioFiscalIcms(arrDadosTributarios.getString("CodigoBeneficioFiscalIcms")); 
-//					p.setCodigoBeneficioFiscalPisCofins(arrDadosTributarios.getString("CodigoBeneficioFiscalPisCofins")); 
-//					p.setTribRegraDescricao(arrRegrasTributarias.getString("tribRegraDescricao")); 
-//					p.setTribRegraUfOrigem(arrRegrasTributarias.getString("tribRegraUfOrigem")); 
-//					p.setTribRegraPerfilOrigem(arrRegrasTributarias.getString("TribRegraPerfilOrigem")); 
-//					p.setTribRegraCodPerfilOrigem(arrRegrasTributarias.getString("TribRegraCodPerfilOrigem")); 
-//					p.setTribRegraUfDestino(arrRegrasTributarias.getString("tribRegraUfDestino")); 
-//					p.setTribRegraCodPerfilDestino(arrRegrasTributarias.getString("TribRegraPerfilDestino")); 
-//					p.setTribRegraCodPerfilDestino(arrRegrasTributarias.getString("TribRegraCodPerfilDestino")); 					
-//					p.setTribRegraCfop(arrRegrasTributarias.getString("tribRegraCfop")); 
-//					p.setTribIcmsCst(arrRegrasTributarias.getString("tribIcmsCst")); 
-//					p.setTribIcmsAliq(arrRegrasTributarias.getDouble("tribIcmsAliq")); 
-//					p.setTribIcmsReducao(arrRegrasTributarias.getDouble("tribIcmsReducao")); 
-//					p.setTribIcmsStAliq(arrRegrasTributarias.getDouble("tribIcmsStAliq")); 
-//					p.setTribIcmsStPauta(arrRegrasTributarias.getString("tribIcmsStPauta")); 
-//					p.setTribIcmsStMva(arrRegrasTributarias.getDouble("tribIcmsStMva")); 
-//					p.setTribFcpAliq(arrRegrasTributarias.getDouble("tribFcpAliq")); 
-//					p.setTribDifalAliq(arrRegrasTributarias.getDouble("tribDifalAliq")); 
-//					p.setTribRegraPisCst(arrRegrasTributarias.getString("tribRegraPisCst")); 
-//					p.setTribRegraPisCstE(arrRegrasTributariasE.getString("tribRegraPisCst")); 
-//					p.setTribPisReducao(arrRegrasTributarias.getString("tribPisReducao")); 
-//					p.setTribPisAliq(arrRegrasTributarias.getString("tribPisAliq")); 
-//					p.setFisRegraCofinsCst(arrRegrasTributarias.getString("fisRegraCofinsCst")); 
-//					p.setTribCofinsReducao(arrRegrasTributarias.getString("tribCofinsReducao")); 
-//					p.setTribCofinAliq(arrRegrasTributarias.getString("tribCofinAliq")); 
-//					p.setFisRegraValidadeInicio(arrRegrasTributarias.getString("fisRegraValidadeInicio")); 
-//					p.setFisRegraValidadeFinal(arrRegrasTributarias.getString("fisRegraValidadeFinal"));	
-//					p.setId_produto(0);
-//					p.setResultadoConsulta(produtos.getString("resultadoConsulta"));
+			  p = new Produto();
+			 
+			 		p.setCodigo(Util.retornaProduto(produtos).getInt("Codigo")); 
+					p.setEAN(Util.retornaProduto(produtos).getString("EAN")); 
+					p.setProdutoDescricao(Util.retornaProduto(produtos).getString("produtoDescricao")); 
+					p.setProdutoDescricaoNota(Util.retornaProduto(produtos).getString("produtoDescricaoNota"));
+					p.setProdutoDescricaoFornecedor(Util.retornaProduto(produtos).getString("produtoDescricaoFornecedor"));
+					p.setProdutoDiasValidade(Util.retornaProduto(produtos).getString("produtoDiasValidade")); 
+					p.setEmbalagemUnitariaPesoBruto(Util.retornaProduto(produtos).getDouble("embalagemUnitariaPesoBruto")); 
+					p.setEmbalagemUnitariaPesoLiquido(Util.retornaProduto(produtos).getDouble("embalagemUnitariaPesoLiquido")); 
+					p.setEmbalagemUnitariaAltura(Util.retornaProduto(produtos).getDouble("embalagemUnitariaAltura")); 
+					p.setEmbalagemUnitariaLargura(Util.retornaProduto(produtos).getDouble("embalagemUnitariaLargura")); 
+					p.setEmbalagemUnitariaProfundidade(Util.retornaProduto(produtos).getDouble("embalagemUnitariaProfundidade")); 
+					p.setEmbalagemUnitariaId(Util.retornaProduto(produtos).getInt("embalagemUnitariaId")); 
+					p.setEmbalagemUnitariaDescricao(Util.retornaProduto(produtos).getString("embalagemUnitariaDescricao")); 
+					p.setEmbalagemUnitariaCapacidade(Util.retornaProduto(produtos).getString("embalagemUnitariaCapacidade")); 
+					p.setEmbalagemUnitariaUnidadeMedida(Util.retornaProduto(produtos).getString("embalagemUnitariaUnidadeMedida")); 
+					p.setEmbalagemUnitariaUnidadeMedida(Util.retornaProduto(produtos).getString("embalagemUnitariaUnidadeSigla")); 
+					p.setFabricanteId(Util.retornaProduto(produtos).getInt("fabricanteId")); 
+					p.setFabricanteNome(Util.retornaProduto(produtos).getString("fabricanteNome")); 
+					p.setFabricanteId(Util.retornaProduto(produtos).getInt("fabricanteMarcaid")); 
+					p.setFabricanteMarcaDescricao(Util.retornaProduto(produtos).getString("fabricanteMarcaDescricao")); 
+					p.setMercadologicaDepartamentoId(Util.retornaProduto(produtos).getInt("mercadologicaDepartamentoId")); 
+					p.setMercadologicaDepartamentoNome(Util.retornaProduto(produtos).getString("mercadologicaDepartamentoNome")); 
+					p.setMercadologicaSecaoId(Util.retornaProduto(produtos).getInt("mercadologicaSecaoId")); 
+					p.setMercadologicaSecaoNome(Util.retornaProduto(produtos).getString("mercadologicaSecaoNome")); 
+					p.setMercadologicaGrupoId(Util.retornaProduto(produtos).getInt("mercadologicaGrupoId")); 
+					p.setMercadologicaGrupoNome(Util.retornaProduto(produtos).getString("mercadologicaGrupoNome")); 
+					p.setMercadologicaSubgrupoId(Util.retornaProduto(produtos).getInt("mercadologicaSubgrupoId")); 
+					p.setMercadologicaSubgrupoNome(Util.retornaProduto(produtos).getString("mercadologicaSubgrupoNome")); 
+					p.setAtivo(Util.retornaProduto(produtos).getInt("Ativo")); 
+					p.setLogEmbalagem(Util.retornaDadosLogisticos(produtos).getString("logEmbalagem")); 
+					p.setLogDum14(Util.retornaDadosLogisticos(produtos).getString("logDum14")); 
+					p.setLogAlturaCm(Util.retornaDadosLogisticos(produtos).getDouble("logAlturaCm")); 
+					p.setLogLarguraCm(Util.retornaDadosLogisticos(produtos).getDouble("logLarguraCm")); 
+					p.setLogProfundidadeCm(Util.retornaDadosLogisticos(produtos).getDouble("logProfundidadeCm")); 
+					p.setLogPesoKg(Util.retornaDadosLogisticos(produtos).getDouble("logPesoKg")); 
+					p.setQtdEmbal(Util.retornaDadosLogisticos(produtos).getDouble("QtdEmbal")); 
+					p.setLogQtdLastro(Util.retornaDadosLogisticos(produtos).getDouble("LogQtdLastro")); 
+					p.setLogQtdCamadas(Util.retornaDadosLogisticos(produtos).getDouble("LogQtdCamadas")); 
+					p.setTributarioNcm(Util.retornaDadosTributarios(produtos).getString("tributarioNcm")); 
+					p.setTributarioCest(Util.retornaDadosTributarios(produtos).getString("tributarioCest")); 
+					p.setTributarioFiguraFiscal(Util.retornaDadosTributarios(produtos).getString("tributarioFiguraFiscal")); 
+					p.setCodigoBeneficioFiscalIcms(Util.retornaDadosTributarios(produtos).getString("CodigoBeneficioFiscalIcms")); 
+					p.setCodigoBeneficioFiscalPisCofins(Util.retornaDadosTributarios(produtos).getString("CodigoBeneficioFiscalPisCofins")); 
+					p.setTribRegraDescricao(Util.retornaRegrasTributarias(produtos).getString("tribRegraDescricao")); 
+					p.setTribRegraUfOrigem(Util.retornaRegrasTributarias(produtos).getString("tribRegraUfOrigem")); 
+					p.setTribRegraPerfilOrigem(Util.retornaRegrasTributarias(produtos).getString("TribRegraPerfilOrigem")); 
+					p.setTribRegraCodPerfilOrigem(Util.retornaRegrasTributarias(produtos).getString("TribRegraCodPerfilOrigem")); 
+					p.setTribRegraUfDestino(Util.retornaRegrasTributarias(produtos).getString("tribRegraUfDestino")); 
+					p.setTribRegraCodPerfilDestino(Util.retornaRegrasTributarias(produtos).getString("TribRegraPerfilDestino")); 
+					p.setTribRegraCodPerfilDestino(Util.retornaRegrasTributarias(produtos).getString("TribRegraCodPerfilDestino")); 					
+					p.setTribRegraCfop(Util.retornaRegrasTributarias(produtos).getString("tribRegraCfop")); 
+					p.setTribIcmsCst(Util.retornaRegrasTributarias(produtos).getString("tribIcmsCst")); 
+					p.setTribIcmsAliq(Util.retornaRegrasTributarias(produtos).getDouble("tribIcmsAliq")); 
+					p.setTribIcmsReducao(Util.retornaRegrasTributarias(produtos).getDouble("tribIcmsReducao")); 
+					p.setTribIcmsStAliq(Util.retornaRegrasTributarias(produtos).getDouble("tribIcmsStAliq")); 
+					p.setTribIcmsStPauta(Util.retornaRegrasTributarias(produtos).getString("tribIcmsStPauta")); 
+					p.setTribIcmsStMva(Util.retornaRegrasTributarias(produtos).getDouble("tribIcmsStMva")); 
+					p.setTribFcpAliq(Util.retornaRegrasTributarias(produtos).getDouble("tribFcpAliq")); 
+					p.setTribDifalAliq(Util.retornaRegrasTributarias(produtos).getDouble("tribDifalAliq")); 
+					p.setTribRegraPisCst(Util.retornaRegrasTributarias(produtos).getString("tribRegraPisCst")); 
+					p.setTribRegraPisCstE(Util.retornaRegrasTributariasE(produtos).getString("tribRegraPisCst")); 
+					p.setTribPisReducao(Util.retornaRegrasTributarias(produtos).getString("tribPisReducao")); 
+					p.setTribPisAliq(Util.retornaRegrasTributarias(produtos).getString("tribPisAliq")); 
+					p.setFisRegraCofinsCst(Util.retornaRegrasTributarias(produtos).getString("fisRegraCofinsCst")); 
+					p.setTribCofinsReducao(Util.retornaRegrasTributarias(produtos).getString("tribCofinsReducao")); 
+					p.setTribCofinAliq(Util.retornaRegrasTributarias(produtos).getString("tribCofinAliq")); 
+					p.setFisRegraValidadeInicio(Util.retornaRegrasTributarias(produtos).getString("fisRegraValidadeInicio")); 
+					p.setFisRegraValidadeFinal(Util.retornaRegrasTributarias(produtos).getString("fisRegraValidadeFinal"));	
+					p.setId_produto(0);
+					p.setResultadoConsulta(produtos.getString("resultadoConsulta"));
 					
 			// System.out.println(p.toString());
 			 
@@ -145,6 +130,7 @@ public class Servico {
 			 System.out.println(Util.retornaDadosLogisticos(produtos));
 			 System.out.println(Util.retornaDadosTributarios(produtos));
 			 System.out.println(Util.retornaRegrasTributarias(produtos));
+			 System.out.println(Util.retornaRegrasTributariasE(produtos));
 			// String temp = produtos.getJSONArray("dadosLogisticos").get(0);
 			
 		}catch (Exception e) {

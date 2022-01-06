@@ -30,7 +30,7 @@ public class ProdutoDAO {
 		
 		try {
 			
-			p = s.consultarProduto("04524935000128", "OperadorXx", "7896404603366", "H", "0202-0222-2202");
+			p = s.consultarProduto("04524935000128", "OperadorXx", "7896306617492", "H", "0202-0222-2202");
 			con.abrirConexao("localhost", 8745, "vr", "postgres", "VrPost@Server");
 			String sql = "INSERT INTO  metaassessoria.prod(EAN, Codigo, produtoDescricao, \r\n"
 					+ "				produtoDescricaoNota, produtoDescricaoFornecedor, \r\n"
@@ -142,7 +142,7 @@ public class ProdutoDAO {
 			stmt.setString(3, p.getProdutoDescricao());
 			stmt.setString(4, p.getProdutoDescricaoNota());
 			stmt.setString(5, p.getProdutoDescricaoFornecedor());
-			stmt.setInt(6, p.getProdutoDiasValidade());
+			stmt.setString(6, p.getProdutoDiasValidade());
 			stmt.setDouble(7, p.getEmbalagemUnitariaPesoBruto());
 			stmt.setDouble(8, p.getEmbalagemUnitariaPesoLiquido());
 			stmt.setDouble(9, p.getEmbalagemUnitariaAltura());
@@ -214,7 +214,7 @@ public class ProdutoDAO {
 			stmt.setString(73, p.getProdutoDescricao());
 			stmt.setString(74, p.getProdutoDescricaoNota());
 			stmt.setString(75, p.getProdutoDescricaoFornecedor());
-			stmt.setInt(76, p.getProdutoDiasValidade());
+			stmt.setString(76, p.getProdutoDiasValidade());
 			stmt.setDouble(77, p.getEmbalagemUnitariaPesoBruto());
 			stmt.setDouble(78, p.getEmbalagemUnitariaPesoLiquido());
 			stmt.setDouble(79, p.getEmbalagemUnitariaAltura());
