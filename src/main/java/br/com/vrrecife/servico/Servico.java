@@ -1,8 +1,5 @@
 package br.com.vrrecife.servico;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import org.json.JSONObject;
 
 import br.com.vrrecife.dominio.Produto;
@@ -21,10 +18,10 @@ public class Servico {
 
 	
 	public static Produto consultarProduto(String cnpj, String usuario,String ean,String ambiente, String token) {
-		Date hoje = Calendar.getInstance().getTime();
+		
 		Produto p = null;
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
-		MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+		//MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
 		
 		
 			
@@ -42,8 +39,7 @@ public class Servico {
 					  .build();
 	  
 			try {
-			String log = "{\"logDum14\":\"\",\"QtdEmbal\":\"0\",\"logProfundidadeCm\":\"0\",\"logAlturaCm\":\"0\",\"logLarguraCm\":\"0\",\"logEmbalagem\":\"\",\"logPesoKg\":\"0\",\"LogQtdCamadas\":\"0\",\"LogQtdLastro\":\"0\"}";
-			 Response response = client.newCall(request).execute();
+			Response response = client.newCall(request).execute();
 			
 			 JSONObject jsonObject = new JSONObject(response.body().source().readUtf8());
 			 String jsonEmString = jsonObject.toString(4);
