@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import br.com.vrrecife.dominio.Produto;
 import br.com.vrrecife.util.Util;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

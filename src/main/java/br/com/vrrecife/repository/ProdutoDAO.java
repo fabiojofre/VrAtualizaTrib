@@ -30,7 +30,7 @@ public class ProdutoDAO {
 		
 		try {
 			
-			p = s.consultarProduto("04524935000128", "OperadorXx", "7896306617492", "H", "0202-0222-2202");
+			p = s.consultarProduto("04524935000128", "OperadorXx", "7896715602119", "H", "0202-0222-2202");
 			con.abrirConexao("localhost", 8745, "vr", "postgres", "VrPost@Server");
 			String sql = "INSERT INTO  metaassessoria.prod(EAN, Codigo, produtoDescricao, \r\n"
 					+ "				produtoDescricaoNota, produtoDescricaoFornecedor, \r\n"
