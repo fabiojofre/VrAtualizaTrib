@@ -8,11 +8,11 @@ public class Produto {
 	private String produtoDescricaoNota;
 	private String produtoDescricaoFornecedor;
 	private String produtoDiasValidade;
-	private double embalagemUnitariaPesoBruto;
-	private double embalagemUnitariaPesoLiquido;
-	private double embalagemUnitariaAltura;
-	private double embalagemUnitariaLargura;
-	private double embalagemUnitariaProfundidade;
+	private String embalagemUnitariaPesoBruto;
+	private String embalagemUnitariaPesoLiquido;
+	private String embalagemUnitariaAltura;
+	private String embalagemUnitariaLargura;
+	private String embalagemUnitariaProfundidade;
 	private int embalagemUnitariaId;
 	private String embalagemUnitariaDescricao;
 	private String embalagemUnitariaCapacidade;
@@ -125,43 +125,43 @@ public class Produto {
 		this.produtoDiasValidade = produtoDiasValidade;
 	}
 
-	public double getEmbalagemUnitariaPesoBruto() {
+	public String getEmbalagemUnitariaPesoBruto() {
 		return embalagemUnitariaPesoBruto;
 	}
 
-	public void setEmbalagemUnitariaPesoBruto(double embalagemUnitariaPesoBruto) {
+	public void setEmbalagemUnitariaPesoBruto(String embalagemUnitariaPesoBruto) {
 		this.embalagemUnitariaPesoBruto = embalagemUnitariaPesoBruto;
 	}
 
-	public double getEmbalagemUnitariaPesoLiquido() {
+	public String getEmbalagemUnitariaPesoLiquido() {
 		return embalagemUnitariaPesoLiquido;
 	}
 
-	public void setEmbalagemUnitariaPesoLiquido(double embalagemUnitariaPesoLiquido) {
+	public void setEmbalagemUnitariaPesoLiquido(String embalagemUnitariaPesoLiquido) {
 		this.embalagemUnitariaPesoLiquido = embalagemUnitariaPesoLiquido;
 	}
 
-	public double getEmbalagemUnitariaAltura() {
+	public String getEmbalagemUnitariaAltura() {
 		return embalagemUnitariaAltura;
 	}
 
-	public void setEmbalagemUnitariaAltura(double embalagemUnitariaAltura) {
+	public void setEmbalagemUnitariaAltura(String embalagemUnitariaAltura) {
 		this.embalagemUnitariaAltura = embalagemUnitariaAltura;
 	}
 
-	public double getEmbalagemUnitariaLargura() {
+	public String getEmbalagemUnitariaLargura() {
 		return embalagemUnitariaLargura;
 	}
 
-	public void setEmbalagemUnitariaLargura(double embalagemUnitariaLargura) {
+	public void setEmbalagemUnitariaLargura(String embalagemUnitariaLargura) {
 		this.embalagemUnitariaLargura = embalagemUnitariaLargura;
 	}
 
-	public double getEmbalagemUnitariaProfundidade() {
+	public String getEmbalagemUnitariaProfundidade() {
 		return embalagemUnitariaProfundidade;
 	}
 
-	public void setEmbalagemUnitariaProfundidade(double embalagemUnitariaProfundidade) {
+	public void setEmbalagemUnitariaProfundidade(String embalagemUnitariaProfundidade) {
 		this.embalagemUnitariaProfundidade = embalagemUnitariaProfundidade;
 	}
 

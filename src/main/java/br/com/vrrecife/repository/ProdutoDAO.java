@@ -12,12 +12,12 @@ import conexao.ConexaoServidor;
 import vrrecifeframework.classes.VrProperties;
 public class ProdutoDAO {
 	
-	public void salvar() {
+	public void salvar(String ean) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date hoje = Calendar.getInstance().getTime(); 
 		
 		Produto p = new Produto();
-		VrProperties vr = new VrProperties();
+		
 		
 		ConexaoServidor con = new ConexaoServidor();
 		Servico s =new Servico();
@@ -28,10 +28,15 @@ public class ProdutoDAO {
 		String db_usuario = VrProperties.getString("database.usuario");
 		String db_senha = VrProperties.getString("database.senha");
 		
+		String token = VrProperties.getString("meta.token");
+		String usuario = VrProperties.getString("meta.usuario");
+		String anbiente = VrProperties.getString("meta.ambierte");
+		String cnpj = VrProperties.getString("meta.cnpj");
+		
 		try {
 			
-			p = s.consultarProduto("04524935000128", "OperadorXx", "7896715602119", "H", "0202-0222-2202");
-			con.abrirConexao("localhost", 8745, "vr", "postgres", "VrPost@Server");
+			p = s.consultarProduto("04524935000128", "OperadorXx", ean, "H", "0202-0222-2202");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			String sql = "INSERT INTO  metaassessoria.prod(EAN, Codigo, produtoDescricao, \r\n"
 					+ "				produtoDescricaoNota, produtoDescricaoFornecedor, \r\n"
 					+ "				produtoDiasValidade,	embalagemUnitariaPesoBruto,\r\n"
@@ -143,11 +148,11 @@ public class ProdutoDAO {
 			stmt.setString(4, p.getProdutoDescricaoNota());
 			stmt.setString(5, p.getProdutoDescricaoFornecedor());
 			stmt.setString(6, p.getProdutoDiasValidade());
-			stmt.setDouble(7, p.getEmbalagemUnitariaPesoBruto());
-			stmt.setDouble(8, p.getEmbalagemUnitariaPesoLiquido());
-			stmt.setDouble(9, p.getEmbalagemUnitariaAltura());
-			stmt.setDouble(10, p.getEmbalagemUnitariaLargura());
-			stmt.setDouble(11, p.getEmbalagemUnitariaProfundidade());
+			stmt.setString(7, p.getEmbalagemUnitariaPesoBruto());
+			stmt.setString(8, p.getEmbalagemUnitariaPesoLiquido());
+			stmt.setString(9, p.getEmbalagemUnitariaAltura());
+			stmt.setString(10, p.getEmbalagemUnitariaLargura());
+			stmt.setString(11, p.getEmbalagemUnitariaProfundidade());
 			stmt.setInt(12, p.getEmbalagemUnitariaId());
 			stmt.setString(13, p.getEmbalagemUnitariaDescricao());
 			stmt.setString(14, p.getEmbalagemUnitariaCapacidade());
@@ -215,11 +220,11 @@ public class ProdutoDAO {
 			stmt.setString(74, p.getProdutoDescricaoNota());
 			stmt.setString(75, p.getProdutoDescricaoFornecedor());
 			stmt.setString(76, p.getProdutoDiasValidade());
-			stmt.setDouble(77, p.getEmbalagemUnitariaPesoBruto());
-			stmt.setDouble(78, p.getEmbalagemUnitariaPesoLiquido());
-			stmt.setDouble(79, p.getEmbalagemUnitariaAltura());
-			stmt.setDouble(80, p.getEmbalagemUnitariaLargura());
-			stmt.setDouble(81, p.getEmbalagemUnitariaProfundidade());
+			stmt.setString(77, p.getEmbalagemUnitariaPesoBruto());
+			stmt.setString(78, p.getEmbalagemUnitariaPesoLiquido());
+			stmt.setString(79, p.getEmbalagemUnitariaAltura());
+			stmt.setString(80, p.getEmbalagemUnitariaLargura());
+			stmt.setString(81, p.getEmbalagemUnitariaProfundidade());
 			stmt.setInt(82, p.getEmbalagemUnitariaId());
 			stmt.setString(83, p.getEmbalagemUnitariaDescricao());
 			stmt.setString(84, p.getEmbalagemUnitariaCapacidade());

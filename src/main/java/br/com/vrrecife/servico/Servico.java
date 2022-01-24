@@ -54,11 +54,11 @@ public class Servico {
 					p.setProdutoDescricaoNota(Util.retornaProduto(produtos).getString("produtoDescricaoNota"));
 					p.setProdutoDescricaoFornecedor(Util.retornaProduto(produtos).getString("produtoDescricaoFornecedor"));
 					p.setProdutoDiasValidade(Util.retornaProduto(produtos).getString("produtoDiasValidade")); 
-					p.setEmbalagemUnitariaPesoBruto(Util.retornaProduto(produtos).getDouble("embalagemUnitariaPesoBruto")); 
-					p.setEmbalagemUnitariaPesoLiquido(Util.retornaProduto(produtos).getDouble("embalagemUnitariaPesoLiquido")); 
-					p.setEmbalagemUnitariaAltura(Util.retornaProduto(produtos).getDouble("embalagemUnitariaAltura")); 
-					p.setEmbalagemUnitariaLargura(Util.retornaProduto(produtos).getDouble("embalagemUnitariaLargura")); 
-					p.setEmbalagemUnitariaProfundidade(Util.retornaProduto(produtos).getDouble("embalagemUnitariaProfundidade")); 
+					p.setEmbalagemUnitariaPesoBruto(Util.retornaProduto(produtos).getString("embalagemUnitariaPesoBruto")); 
+					p.setEmbalagemUnitariaPesoLiquido(Util.retornaProduto(produtos).getString("embalagemUnitariaPesoLiquido")); 
+					p.setEmbalagemUnitariaAltura(Util.retornaProduto(produtos).getString("embalagemUnitariaAltura")); 
+					p.setEmbalagemUnitariaLargura(Util.retornaProduto(produtos).getString("embalagemUnitariaLargura")); 
+					p.setEmbalagemUnitariaProfundidade(Util.retornaProduto(produtos).getString("embalagemUnitariaProfundidade")); 
 					p.setEmbalagemUnitariaId(Util.retornaProduto(produtos).getInt("embalagemUnitariaId")); 
 					p.setEmbalagemUnitariaDescricao(Util.retornaProduto(produtos).getString("embalagemUnitariaDescricao")); 
 					p.setEmbalagemUnitariaCapacidade(Util.retornaProduto(produtos).getString("embalagemUnitariaCapacidade")); 
