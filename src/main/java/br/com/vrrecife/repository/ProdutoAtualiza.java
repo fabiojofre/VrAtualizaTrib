@@ -6,18 +6,26 @@ import javax.swing.JOptionPane;
 
 import br.com.vrrecife.dominio.ProdutoRetorno;
 import conexao.ConexaoServidor;
+import vrrecifeframework.classes.VrProperties;
 
 public class ProdutoAtualiza {
 	ConexaoServidor con = new ConexaoServidor();
 	ProdutoRetornoDAO pr =  new ProdutoRetornoDAO();
 	ProdutoRetorno	p = new ProdutoRetorno();
 	
-	public void ataluzaNcm(String ean) {
-		p = pr.retornar(ean);
+	String db_ip =  VrProperties.getString("database.ip");
+	int db_porta = VrProperties.getInt("database.porta");
+	String db_nome = VrProperties.getString("database.nome");
+	String db_usuario = VrProperties.getString("database.usuario");
+	String db_senha = VrProperties.getString("database.senha");
+	
+	
+	public void atualizaNcm(ProdutoRetorno p) {
+		
 		try {
 			
 			String sql ="update produto set ncm1 = ?, ncm2 = ?, ncm3 = ? where id = ?";
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
 		
@@ -38,12 +46,12 @@ public class ProdutoAtualiza {
 		}
 	}
 
-	public void ataluzaCest(String ean) {
-		p = pr.retornar(ean);
+	public void atualizaCest(ProdutoRetorno p) {
+	
 		try {
 			
 			String sql ="update produto set id_cest = ? where id= ?";
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			PreparedStatement stmt = con.prepareStatement(sql);
 				
 		
@@ -62,12 +70,12 @@ public class ProdutoAtualiza {
 		}
 	}
 
-	public void ataluzaPisCofins(String ean) {
-		p = pr.retornar(ean);
+	public void atualizaPisCofins(ProdutoRetorno p) {
+		
 		try {
 			
 			String sql ="update produto set id_tipopiscofins = ?, id_tipopiscofinscredito = ? where id = ?";
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			PreparedStatement stmt = con.prepareStatement(sql);
 				
 		
@@ -86,12 +94,13 @@ public class ProdutoAtualiza {
 			JOptionPane.showMessageDialog(null, e);
 		}
 	}
-	public void ataluzaTribVenda(String ean){
-		p = pr.retornar(ean);
+
+	public void atualizaTribVenda(ProdutoRetorno p){
+		
 		try {
 			
 			String sql ="update produtoaliquota set id_aliquotadebito =?, id_aliquotaconsumidor = ? where id =?";
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			PreparedStatement stmt = con.prepareStatement(sql);
 				
 		
@@ -110,12 +119,13 @@ public class ProdutoAtualiza {
 			JOptionPane.showMessageDialog(null, e);
 		}
 	}
-	public void ataluzaBeneficio(String ean){
-		p = pr.retornar(ean);
+	
+	public void atualizaBeneficio(ProdutoRetorno p){
+		
 		try {
 			
 			String sql ="update produtoaliquotabeneficio set id_aliquota =?, id_beneficio = ? where id_produtoaliquota = ?";
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			PreparedStatement stmt = con.prepareStatement(sql);
 				
 		

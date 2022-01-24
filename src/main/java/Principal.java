@@ -2,13 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,17 +17,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import br.com.vrrecife.dominio.ProdutoRetorno;
+import br.com.vrrecife.repository.ProdutoAtualiza;
+import br.com.vrrecife.repository.ProdutoDAO;
 import br.com.vrrecife.repository.ProdutoRetornoDAO;
+import br.com.vrrecife.servico.Servico;
 import br.com.vrrecife.util.RecebeSoNumeros;
 import vrrecifeframework.classes.VrProperties;
-import java.awt.GridLayout;
 
 
 public class Principal extends JFrame {
@@ -41,7 +41,7 @@ public class Principal extends JFrame {
 	Principal frame;
 	private JTextField tf_barras;
 	ProdutoRetorno pr = new ProdutoRetorno(); 
-	
+	String ean;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -60,14 +60,13 @@ public class Principal extends JFrame {
 		});
 	}
 
-	JButton btnIniciar = new JButton("Iniciar");
+	JButton btAtualizar = new JButton("Atualizar");
 
 	// variaveis para o timer
 	Timer timer;
 	boolean atividade = false;
 	// variavel properties
 	VrProperties vr = new VrProperties();
-	int minutos;
 	private JTextField txtNcm;
 	private JTextField txtCest;
 	private JTextField txtPiscofins;
@@ -87,6 +86,7 @@ public class Principal extends JFrame {
 	private JTextField icms_novo;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
+	private JLabel lbDesc;
 	
 
 	/**
@@ -95,7 +95,6 @@ public class Principal extends JFrame {
 	public Principal() {
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/vrrecifeframework/img/icone.png")));
-		minutos = Integer.parseInt(VrProperties.getString("redecen.minutos_consulta"));
 		setResizable(false);
 		setAutoRequestFocus(false);
 		setTitle("Atualiza Trib");
@@ -116,11 +115,23 @@ public class Principal extends JFrame {
 		lblNewLabel.setBounds(114, 0, 178, 28);
 		desktopPane.add(lblNewLabel);
 		
+		btAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProdutoAtualiza pa = new ProdutoAtualiza();
+				pa.atualizaNcm(pr);
+				pa.atualizaCest(pr);
+				pa.atualizaPisCofins(pr);
+				pa.atualizaTribVenda(pr);
+				pa.atualizaBeneficio(pr);
+				
+			}
+		});
+		
 	
 
-		btnIniciar.setEnabled(true);
-		btnIniciar.setBounds(385, 90, 89, 23);
-		desktopPane.add(btnIniciar);
+		btAtualizar.setEnabled(true);
+		btAtualizar.setBounds(419, 336, 89, 23);
+		desktopPane.add(btAtualizar);
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -133,7 +144,7 @@ public class Principal extends JFrame {
 		});
 		btnNewButton.setForeground(Color.LIGHT_GRAY);
 		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/vrrecifeframework/img/config.png")));
-		btnNewButton.setBounds(443, 0, 65, 50);
+		btnNewButton.setBounds(503, 0, 46, 54);
 		desktopPane.add(btnNewButton);
 		
 		tf_barras = new JTextField();
@@ -142,10 +153,15 @@ public class Principal extends JFrame {
 		tf_barras.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String ean = tf_barras.getText();
+				 ean = tf_barras.getText();
 				if (e.getKeyCode() ==KeyEvent.VK_ENTER) {
+					
+					ProdutoDAO pd = new ProdutoDAO();
+					pd.salvar(ean);
 					ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
+					
 					pr = pdao.retornar(ean);
+					lbDesc.setText(pr.getId()+" - "+pr.getDescricaocompleta());
 					ncm_old.setText(pr.getNcm_old());
 					ncm_novo.setText(pr.getNcm_novo());
 					cest_old.setText(pr.getCest_old());
@@ -164,11 +180,11 @@ public class Principal extends JFrame {
 		});
 		
 	
-		tf_barras.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tf_barras.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tf_barras.requestFocus();
 		tf_barras.setDocument(new RecebeSoNumeros());
 		tf_barras.setToolTipText("Digite o código de barras ao qual deseja consultar.");
-		tf_barras.setBounds(21, 61, 146, 20);
+		tf_barras.setBounds(21, 61, 152, 28);
 		desktopPane.add(tf_barras);
 		tf_barras.setColumns(10);
 		
@@ -271,31 +287,11 @@ public class Principal extends JFrame {
 		lblNewLabel_3.setBounds(342, 155, 77, 23);
 		desktopPane.add(lblNewLabel_3);
 		
+		lbDesc = new JLabel("");
+		lbDesc.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbDesc.setBounds(27, 116, 481, 28);
+		desktopPane.add(lbDesc);
+		
 	}
 
-	// metodo que controla o timer
-	public void controle(int minutos) {
-		timer = new Timer();
-		timer.schedule(new controleTask(), 0, minutos * 1000);
-	}
-
-	// Classe de controle de ações do timer
-	class controleTask extends TimerTask {
-		public void run() {
-			if (atividade == true) {
-				//lbStatus_1.setText("Executando!!!!!");
-//				 RecebimentoDAO dao = new RecebimentoDAO();
-//				 try {
-//					dao.executaRecebimento();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				System.out.println("Time's up!");
-//				lbStatus_1.setText("");
-			} else
-
-				timer.cancel(); // Terminate the timer thread
-		}
-	}
 }

@@ -20,18 +20,16 @@ public class Config extends JFrame {
 
 	VrProperties vr = new VrProperties();
 	private JPanel contentPane;
+	private JPasswordField tf_senhaDb;
 	private JTextField tf_nomeDb;
 	private JTextField tf_ip;
 	private JTextField tf_porta;
 	private JTextField tf_userDb;
 	private JTextField tf_usuario;
 	private JTextField tf_cnpj;
-	private JTextField tf_senha;
-	private JTextField tf_minutos;
-	private JTextField tf_banco;
-	private JTextField tf_ag;
-	private JTextField tf_conta;
-	private JPasswordField tf_senhaDb;
+	private JTextField tf_token;
+	private JTextField tf_ambiente;
+	
 
 	/**
 	 * Launch the application.
@@ -121,67 +119,37 @@ public class Config extends JFrame {
 		tf_usuario.setColumns(10);
 		tf_usuario.setBounds(258, 21, 131, 20);
 		desktopPane.add(tf_usuario);
-		tf_usuario.setText(VrProperties.getString("redecen.usuario"));
+		tf_usuario.setText(VrProperties.getString("meta.usuario"));
 		
 		tf_cnpj = new JTextField();
 		tf_cnpj.setColumns(10);
 		tf_cnpj.setBounds(258, 42, 131, 20);
 		desktopPane.add(tf_cnpj);
-		tf_cnpj.setText(VrProperties.getString("redecen.cnpj"));
+		tf_cnpj.setText(VrProperties.getString("meta.cnpj"));
 		
 		JLabel lblCnpj = new JLabel("CNPJ:");
 		lblCnpj.setBounds(193, 45, 55, 14);
 		desktopPane.add(lblCnpj);
 		
-		JLabel lblSenha = new JLabel("Senha:");
+		JLabel lblSenha = new JLabel("Token");
 		lblSenha.setBounds(193, 66, 55, 14);
 		desktopPane.add(lblSenha);
 		
-		tf_senha = new JTextField();
-		tf_senha.setColumns(10);
-		tf_senha.setBounds(258, 63, 131, 20);
-		desktopPane.add(tf_senha);
-		tf_senha.setText(VrProperties.getString("redecen.senha"));
+		tf_token = new JTextField();
+		tf_token.setColumns(10);
+		tf_token.setBounds(258, 63, 131, 20);
+		desktopPane.add(tf_token);
+		tf_token.setText(VrProperties.getString("meta.token"));
 		
-		JLabel lblMinutos = new JLabel("Minutos");
-		lblMinutos.setBounds(193, 81, 42, 14);
+		JLabel lblMinutos = new JLabel("Ambiente");
+		lblMinutos.setBounds(193, 81, 86, 14);
 		desktopPane.add(lblMinutos);
 		
-		tf_minutos = new JTextField();
-		tf_minutos.setColumns(10);
-		tf_minutos.setBounds(193, 99, 42, 20);
-		desktopPane.add(tf_minutos);
-		tf_minutos.setText(VrProperties.getString("redecen.minutos_consulta"));
-		
-		JLabel lblIdBanco = new JLabel("Id Banco");
-		lblIdBanco.setBounds(245, 81, 42, 14);
-		desktopPane.add(lblIdBanco);
-		
-		tf_banco = new JTextField();
-		tf_banco.setColumns(10);
-		tf_banco.setBounds(245, 99, 42, 20);
-		desktopPane.add(tf_banco);
-		tf_banco.setText(VrProperties.getString("redecen.id_banco"));
-		
-		JLabel lblIdAg = new JLabel("Ag.");
-		lblIdAg.setBounds(295, 81, 42, 14);
-		desktopPane.add(lblIdAg);
-		
-		tf_ag = new JTextField();
-		tf_ag.setColumns(10);
-		tf_ag.setBounds(295, 99, 42, 20);
-		desktopPane.add(tf_ag);
-		tf_ag.setText(VrProperties.getString("redecen.agencia"));
-		
-		JLabel lblIdCont = new JLabel("Conta");
-		lblIdCont.setBounds(347, 81, 42, 14);
-		desktopPane.add(lblIdCont);
-		
-		tf_conta = new JTextField();
-		tf_conta.setColumns(10);
-		tf_conta.setBounds(347, 99, 42, 20);
-		desktopPane.add(tf_conta);
-		tf_conta.setText(VrProperties.getString("redecen.conta"));
+		tf_ambiente = new JTextField();
+		tf_ambiente.setColumns(10);
+		tf_ambiente.setBounds(193, 99, 42, 20);
+		desktopPane.add(tf_ambiente);
+		tf_ambiente.setText(VrProperties.getString("meta.ambierte"));
 		
 		tf_senhaDb = new JPasswordField();
 		tf_senhaDb.setEchoChar('*');
@@ -199,11 +167,10 @@ public class Config extends JFrame {
 				VrProperties.setProperty("database.senha", tf_senhaDb.getPassword().toString());
 				VrProperties.setProperty("redecen.usuario", tf_usuario.getText());
 				VrProperties.setProperty("redecen.cnpj", tf_cnpj.getText());
-				VrProperties.setProperty("redecen.senha", tf_senha.getText());
-				VrProperties.setProperty("redecen.minutos_consulta", tf_minutos.getText());
-				VrProperties.setProperty("redecen.id_banco", tf_banco.getText());
-				VrProperties.setProperty("redecen.agencia", tf_ag.getText());
-				VrProperties.setProperty("redecen.conta", tf_conta.getText());
+				VrProperties.setProperty("redecen.senha", tf_ambiente.getText());
+				VrProperties.setProperty("redecen.minutos_consulta", tf_token.getText());
+				VrProperties.setProperty("redecen.id_banco", tf_cnpj.getText());
+				VrProperties.setProperty("redecen.agencia", tf_usuario.getText());
 				
 				JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso!");
 				

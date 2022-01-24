@@ -35,7 +35,7 @@ public class ProdutoDAO {
 		
 		try {
 			
-			p = s.consultarProduto("04524935000128", "OperadorXx", ean, "H", "0202-0222-2202");
+			p = s.consultarProduto(cnpj, usuario, ean, anbiente,token);
 			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
 			String sql = "INSERT INTO  metaassessoria.prod(EAN, Codigo, produtoDescricao, \r\n"
 					+ "				produtoDescricaoNota, produtoDescricaoFornecedor, \r\n"
