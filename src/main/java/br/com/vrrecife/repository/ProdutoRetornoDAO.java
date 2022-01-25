@@ -25,6 +25,7 @@ public class ProdutoRetornoDAO {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, ean);
 			ResultSet rs = stmt.executeQuery();
+		
 			while(rs.next()){
 				
 			
@@ -59,6 +60,9 @@ public class ProdutoRetornoDAO {
 			pr.setPis_credito_old(rs.getInt("pis_credito_old"));
 			pr.setDescricao_pis_novo(rs.getString("descricao_pis_novo"));
 			pr.setDescricao_pis_old(rs.getString("descricao_pis_old"));
+			}
+			if(pr.getId()== 0) {
+				JOptionPane.showMessageDialog(null, "Produto não encontrado no VR");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

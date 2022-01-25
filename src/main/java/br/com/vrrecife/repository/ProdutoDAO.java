@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import br.com.vrrecife.dominio.Produto;
 import br.com.vrrecife.servico.Servico;
 import conexao.ConexaoServidor;
@@ -295,6 +297,7 @@ public class ProdutoDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
+				
 		}
 	}
 

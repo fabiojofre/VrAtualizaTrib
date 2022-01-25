@@ -1,6 +1,6 @@
 
-import br.com.vrrecife.repository.ProdutoDAO;
-import br.com.vrrecife.repository.ProdutoRetornoDAO;
+import br.com.vrrecife.dominio.Produto;
+import br.com.vrrecife.servico.Servico;
 
 
 /**
@@ -9,14 +9,18 @@ import br.com.vrrecife.repository.ProdutoRetornoDAO;
  */
 public class Teste {
     public static void main(String args[]){
-          
-    	ProdutoDAO pd = new ProdutoDAO();
-    	pd.salvar("7896894900013");
+    	Servico s =new Servico();
+    	Produto p = new Produto();
+    	p = s.consultarProduto("04524935000128", "OperadorXx", "7896894900013", "H", "0202-0222-2202");
+    	p.toString();
+//    	ProdutoDAO pd = new ProdutoDAO();
+//    	pd.salvar("7896259411956");
     	
-    	ProdutoRetornoDAO pr = new ProdutoRetornoDAO();
-    	System.out.println(pr.retornar("7896894900013").toString());
+//    	ProdutoRetornoDAO pr = new ProdutoRetornoDAO();
+//    	System.out.println(pr.retornar("7896894900013").toString());
 //    	ProdutoAtualiza pa = new ProdutoAtualiza();
 //    	pa.ataluzaBeneficio();
+    	
     	
     }
 }

@@ -139,7 +139,7 @@ public class Principal extends JFrame {
 				Config con = new Config();
 				con.setLocationRelativeTo(null);
 				con.setVisible(true);
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnNewButton.setForeground(Color.LIGHT_GRAY);
@@ -155,12 +155,26 @@ public class Principal extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				 ean = tf_barras.getText();
 				if (e.getKeyCode() ==KeyEvent.VK_ENTER) {
-					
 					ProdutoDAO pd = new ProdutoDAO();
 					pd.salvar(ean);
 					ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
-					
 					pr = pdao.retornar(ean);
+					if(!pr.getNcm_novo().equals(pr.getNcm_old())) {
+						ncm_novo.setForeground(Color.red);
+					}
+					if(!pr.getCest_novo().equals(pr.getCest_old())) {
+						cest_novo.setForeground(Color.red);
+					}
+					if(!pr.getDesc_tribvenda_novo().equals(pr.getDesc_tribvenda())) {
+						icms_novo.setForeground(Color.red);
+					}
+					if(!pr.getDescricao_pis_novo().equals(pr.getDescricao_pis_old())) {
+						pis_novo.setForeground(Color.red);
+					}
+					if(!pr.getCodigo_beneficio_novo().equals(pr.getCodigo_beneficio_old())) {
+						beneficio_novo.setForeground(Color.red);
+					}
+					
 					lbDesc.setText(pr.getId()+" - "+pr.getDescricaocompleta());
 					ncm_old.setText(pr.getNcm_old());
 					ncm_novo.setText(pr.getNcm_novo());
@@ -172,9 +186,14 @@ public class Principal extends JFrame {
 					icms_novo.setText(pr.getDesc_tribvenda_novo());
 					beneficio_old.setText(pr.getCodigo_beneficio_old());
 					beneficio_novo.setText(pr.getCodigo_beneficio_novo());
-					
-					JOptionPane.showMessageDialog(null, ean);
+					if(icms_novo.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Aliquota não encontrada, favor entra em /n"+
+								"contato com o Suporte VR para cadastrar a aliquaota "+pr.getTrib_a_cadastrar());
+						btAtualizar.setEnabled(false);
+					}else 
+						btAtualizar.setEnabled(true);
 					tf_barras.setText("");
+
 				}
 			}
 		});
@@ -200,31 +219,36 @@ public class Principal extends JFrame {
 		txtNcm = new JTextField();
 		txtNcm.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtNcm.setText("NCM:");
-		panel1.add(txtNcm);
 		txtNcm.setColumns(10);
+		txtNcm.setEditable(false);
+		panel1.add(txtNcm);
 		
 		txtCest = new JTextField();
 		txtCest.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtCest.setText("Cest:");
 		txtCest.setColumns(10);
+		txtCest.setEditable(false);
 		panel1.add(txtCest);
 		
 		txtPiscofins = new JTextField();
 		txtPiscofins.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtPiscofins.setText("Pis/Cofins:");
 		txtPiscofins.setColumns(10);
+		txtPiscofins.setEditable(false);
 		panel1.add(txtPiscofins);
 		
 		txtIcms = new JTextField();
 		txtIcms.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtIcms.setText("ICMS:");
 		txtIcms.setColumns(1);
+		txtIcms.setEditable(false);
 		panel1.add(txtIcms);
 		
 		txtBenefcio = new JTextField();
 		txtBenefcio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtBenefcio.setText("Benef\u00EDcio:");
 		txtBenefcio.setColumns(1);
+		txtBenefcio.setEditable(false);
 		panel1.add(txtBenefcio);
 		
 		panel1_1 = new JPanel();
@@ -234,47 +258,57 @@ public class Principal extends JFrame {
 		
 		ncm_old = new JTextField();
 		ncm_old.setColumns(10);
+		ncm_old.setEditable(false);
 		panel1_1.add(ncm_old);
 		
 		cest_old = new JTextField();
 		cest_old.setColumns(10);
+		cest_old.setEditable(false);
 		panel1_1.add(cest_old);
 		
 		pis_old = new JTextField();
 		pis_old.setColumns(10);
+		pis_old.setEditable(false);
 		panel1_1.add(pis_old);
 		
 		icms_old = new JTextField();
 		icms_old.setColumns(1);
+		icms_old.setEditable(false);
 		panel1_1.add(icms_old);
 		
 		beneficio_old = new JTextField();
 		beneficio_old.setColumns(1);
+		beneficio_old.setEditable(false);
 		panel1_1.add(beneficio_old);
 		
 		panel1_2 = new JPanel();
 		panel1_2.setBounds(330, 185, 178, 129);
-		desktopPane.add(panel1_2);
 		panel1_2.setLayout(new GridLayout(5, 1, 2, 0));
+		desktopPane.add(panel1_2);
 		
 		ncm_novo = new JTextField();
 		ncm_novo.setColumns(10);
+		ncm_novo.setEditable(false);
 		panel1_2.add(ncm_novo);
 		
 		cest_novo = new JTextField();
 		cest_novo.setColumns(10);
+		cest_novo.setEditable(false);
 		panel1_2.add(cest_novo);
 		
 		pis_novo = new JTextField();
 		pis_novo.setColumns(10);
+		pis_novo.setEditable(false);
 		panel1_2.add(pis_novo);
 		
 		icms_novo = new JTextField();
 		icms_novo.setColumns(1);
+		icms_novo.setEditable(false);
 		panel1_2.add(icms_novo);
 		
 		beneficio_novo = new JTextField();
 		beneficio_novo.setColumns(1);
+		beneficio_novo.setEditable(false);
 		panel1_2.add(beneficio_novo);
 		
 		lblNewLabel_2 = new JLabel("Antigo");
