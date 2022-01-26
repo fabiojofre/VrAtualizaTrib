@@ -91,7 +91,8 @@ select
 	(select id  from cest c where mp.tributariocest= lpad(cast(c.cest1 as text),2,'0')||lpad(cast(c.cest2 as text),3,'0')||lpad(cast(c.cest3 as text),2,'0'))id_cest_novo, 
 	mp.tributariocest cest_novo,
 	(select id from codigobeneficiocst c where c.codigo = substring(mp.codigobeneficiofiscalicms from 1 for 8))id_beneficio_novo,
-	substring(mp.codigobeneficiofiscalicms from 1 for 8)codigo_beneficio_novo,
+	case mp.codigobeneficiofiscalicms when ' N/A-NAO APLICAVEL' then ''
+	else substring(mp.codigobeneficiofiscalicms from 1 for 8) end codigo_beneficio_novo,
 	(select pab.id from produtoaliquotabeneficio pab left join codigobeneficiocst c on pab.id_beneficio = c.id  where  pab.id_produtoaliquota  = (select id from produtoaliquota where id_produto = p.id and id_estado =43))id_produto_aliquota_beneficio,
 	(select pab.id_beneficio from produtoaliquotabeneficio pab left join codigobeneficiocst c on pab.id_beneficio = c.id  where  pab.id_produtoaliquota  = (select id from produtoaliquota where id_produto = p.id and id_estado =43))id_beneficio_old,
 	(select c.codigo from produtoaliquotabeneficio pab left join codigobeneficiocst c on pab.id_beneficio = c.id  where  pab.id_produtoaliquota  = (select id from produtoaliquota where id_produto = p.id and id_estado =43))codigo_beneficio_old,
@@ -120,7 +121,7 @@ left join cest c on p.id_cest = c.id;
 
 
 
-select * from METAASSESORIAPROD where METAASSESORIAPROD.CODIGOBARRAS = '7896894900013'
+select * from METAASSESORIAPROD where METAASSESORIAPROD.CODIGOBARRAS = '7895800304211'
 
 
 select id_tipopiscofins, id_tipopiscofinscredito from produto where id =19978
@@ -139,3 +140,5 @@ update produtoaliquota set id_aliquotadebito =?, id_aliquotaconsumidor = ? where
 select * from produtoaliquotabeneficio p where id_produtoaliquota = 22772
 
 update produtoaliquotabeneficio set id id_aliquota =?, id_beneficio = ? where id_produtoaliquota = ?
+
+select * from metaassessoria.prod p 

@@ -118,12 +118,32 @@ public class Principal extends JFrame {
 		btAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ProdutoAtualiza pa = new ProdutoAtualiza();
-				pa.atualizaNcm(pr);
-				pa.atualizaCest(pr);
+				ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
+				Object[] options = {"Atualizar","Cancelar"};
+		    	int valor = JOptionPane.showOptionDialog(null, 	"Todos os itens em vermelho serão atualizados. \n"+
+		    										"Esse processo não poderá ser desfeito!! \n"+
+		    										"Deseja continuar?", "Atenção!!",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+		    	if(valor == 0) {
+				if(!ncm_novo.getText().equals(ncm_old.getText())) {
+					pa.atualizaNcm(pr);
+				}
+				if(!cest_novo.getText().equals(cest_old.getText())) {
+					pa.atualizaCest(pr);
+				}
+				if(!pis_novo.getText().equals(pis_old.getText())) {
 				pa.atualizaPisCofins(pr);
+				}
+				if(!icms_novo.getText().equals(icms_old.getText())&& !icms_novo.getText().equals("")) {
 				pa.atualizaTribVenda(pr);
+				pdao.retornar(ean);
+				}
+				if(!beneficio_novo.getText().equals(beneficio_old.getText())) {
 				pa.atualizaBeneficio(pr);
+				}
+				JOptionPane.showMessageDialog(null, "Atualização efetuada com sucesso!!");
+				btAtualizar.setEnabled(false);
 				
+		    	}
 			}
 		});
 		
@@ -150,15 +170,18 @@ public class Principal extends JFrame {
 		tf_barras = new JTextField();
 		tf_barras.setFocusTraversalKeysEnabled(false);
 		tf_barras.setFocusCycleRoot(true);
+		
 		tf_barras.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				 ean = tf_barras.getText();
 				if (e.getKeyCode() ==KeyEvent.VK_ENTER) {
+					if(tf_barras.getText().length() >= 8 && tf_barras.getText().length() <= 13) {
 					ProdutoDAO pd = new ProdutoDAO();
 					pd.salvar(ean);
 					ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
 					pr = pdao.retornar(ean);
+					
 					if(!pr.getNcm_novo().equals(pr.getNcm_old())) {
 						ncm_novo.setForeground(Color.red);
 					}
@@ -194,6 +217,8 @@ public class Principal extends JFrame {
 						btAtualizar.setEnabled(true);
 					tf_barras.setText("");
 
+				}else
+					JOptionPane.showMessageDialog(null, "Ean digitado não é válido!","Atenção!",JOptionPane.DEFAULT_OPTION);
 				}
 			}
 		});
@@ -215,6 +240,8 @@ public class Principal extends JFrame {
 		panel1.setBounds(27, 185, 77, 129);
 		desktopPane.add(panel1);
 		panel1.setLayout(new GridLayout(5, 1, 2, 0));
+		
+		btAtualizar.setEnabled(false); 
 		
 		txtNcm = new JTextField();
 		txtNcm.setFont(new Font("Tahoma", Font.BOLD, 11));
