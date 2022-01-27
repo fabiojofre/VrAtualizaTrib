@@ -42,7 +42,7 @@ public class ProdutoAtualiza {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar o NCM! \n"+"Favor contactar o suporte para verificação na base VR. \n"+ e);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class ProdutoAtualiza {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar o CEST! \n"+"Favor contactar o suporte para verificação na base VR. \n"+e);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class ProdutoAtualiza {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar o PIS/COFINS! \n"+"Favor contactar o suporte para verificação na base VR. \n"+e);
 		}
 	}
 
@@ -116,7 +116,7 @@ public class ProdutoAtualiza {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar o ICMS! \n"+"Favor contactar o suporte para verificação na base VR. \n"+e);
 		}
 	}
 	
@@ -141,7 +141,31 @@ public class ProdutoAtualiza {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar o Beneficio! \n"+"Favor contactar o suporte para verificação na base VR. \n"+e);
+		}
+	}
+	public void cadastraBeneficio(ProdutoRetorno p){
+		
+		try {
+			
+			String sql ="insert into produtoaliquotabeneficio(id_produtoaliquota, id_aliquota,id_beneficio)values(?, ? ,?)";
+			con.abrirConexao(db_ip, db_porta, db_nome, db_usuario, db_senha);
+			PreparedStatement stmt = con.prepareStatement(sql);
+				
+			stmt.setInt(1, p.getId_produtoaliquota());
+			stmt.setInt(2, p.getId_tribvenda_novo());
+			stmt.setInt(3, p.getId_beneficio_novo());
+			
+			
+			int rowsInserted = stmt.executeUpdate();
+			 
+			 if (rowsInserted > 0) {
+			     System.out.println("A new user was inserted successfully!");
+			 }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Beneficio! \n"+"Favor contactar o suporte para verificação na base VR. \n"+e);
 		}
 	}
 }

@@ -12,7 +12,7 @@ import okhttp3.Response;
 
 public class Servico {
 	static String webService = "http://metaassessoria2.ddns.net:23145";
-	static int codSucesso = 000;
+	public static String codSucesso;
 	
 
 	
@@ -36,7 +36,7 @@ public class Servico {
 					  .addHeader("ambiente", ambiente)
 					  .addHeader("Content-Type", "application/x-www-form-urlencoded")
 					  .build();
-	  
+			
 			try {
 			Response response = client.newCall(request).execute();
 			
@@ -45,6 +45,7 @@ public class Servico {
 			 
 			 JSONObject produtos = new JSONObject(jsonEmString);
 			 
+			codSucesso =  response.message();
 			 
 			  p = new Produto();
 			 
@@ -118,6 +119,7 @@ public class Servico {
 					p.setFisRegraValidadeFinal(Util.retornaRegrasTributarias(produtos).getString("fisRegraValidadeFinal"));	
 					p.setId_produto(0);
 					p.setResultadoConsulta(produtos.getString("resultadoConsulta"));
+					p.setStatusWeb(codSucesso);
 					
 			// System.out.println(p.toString());
 			 
@@ -127,12 +129,11 @@ public class Servico {
 			 System.out.println(Util.retornaRegrasTributarias(produtos));
 			 System.out.println(Util.retornaRegrasTributariasE(produtos));
 			// String temp = produtos.getJSONArray("dadosLogisticos").get(0);
-			
+			//System.out.println(codSucesso);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
 			return p;
 	}
-		
 	
 }

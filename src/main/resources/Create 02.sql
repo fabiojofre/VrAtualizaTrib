@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS metaassessoria.prod
 	    resultadoConsulta varchar(60),
 	    CONSTRAINT recebimento_pkey PRIMARY KEY (EAN));
 	   
-	drop view METAASSESORIAPROD;
+--	drop view METAASSESORIAPROD;
 	   
 create or replace view METAASSESORIAPROD as 	   
 select 
@@ -121,7 +121,7 @@ left join cest c on p.id_cest = c.id;
 
 
 
-select * from METAASSESORIAPROD where METAASSESORIAPROD.CODIGOBARRAS = '7895800304211'
+select * from METAASSESORIAPROD where METAASSESORIAPROD.CODIGOBARRAS = '78933149'
 
 
 select id_tipopiscofins, id_tipopiscofinscredito from produto where id =19978
@@ -137,8 +137,12 @@ select * from produtoaliquota  where id = 22772
 
 update produtoaliquota set id_aliquotadebito =?, id_aliquotaconsumidor = ? where id =?
 
-select * from produtoaliquotabeneficio p where id_produtoaliquota = 22772
+select * from produtoaliquotabeneficio p where id_produtoaliquota = 22776
 
 update produtoaliquotabeneficio set id id_aliquota =?, id_beneficio = ? where id_produtoaliquota = ?
 
 select * from metaassessoria.prod p 
+
+insert into produtoaliquotabeneficio(id_produtoaliquota, id_aliquota,id_beneficio)values(22776,36,394)
+
+select * from produtoaliquotabeneficio where id>=31004

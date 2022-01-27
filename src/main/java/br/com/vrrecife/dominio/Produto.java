@@ -75,7 +75,8 @@ public class Produto {
 	private String fisRegraValidadeFinal;
 	private int id_produto;
 	private String dataatualizacao;
-	private String resultadoConsulta;
+	public static String resultadoConsulta;
+	private String statusWeb = "";
 
 	public int getCodigo() {
 		return Codigo;
@@ -643,6 +644,15 @@ public class Produto {
 
 	public void setResultadoConsulta(String resultadoConsulta) {
 		this.resultadoConsulta = resultadoConsulta;
+	}
+
+	
+	public String getStatusWeb() {
+		return statusWeb;
+	}
+
+	public void setStatusWeb(String statusWeb) {
+		this.statusWeb = statusWeb;
 	}
 
 	@Override

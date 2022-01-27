@@ -14,27 +14,34 @@ import conexao.ConexaoServidor;
 import vrrecifeframework.classes.VrProperties;
 public class ProdutoDAO {
 	
-	public void salvar(String ean) {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date hoje = Calendar.getInstance().getTime(); 
-		
-		Produto p = new Produto();
-		
-		
-		ConexaoServidor con = new ConexaoServidor();
-		Servico s =new Servico();
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	Date hoje = Calendar.getInstance().getTime(); 
 	
-		String db_ip =  VrProperties.getString("database.ip");
-		int db_porta = VrProperties.getInt("database.porta");
-		String db_nome = VrProperties.getString("database.nome");
-		String db_usuario = VrProperties.getString("database.usuario");
-		String db_senha = VrProperties.getString("database.senha");
-		
-		String token = VrProperties.getString("meta.token");
-		String usuario = VrProperties.getString("meta.usuario");
-		String anbiente = VrProperties.getString("meta.ambierte");
-		String cnpj = VrProperties.getString("meta.cnpj");
-		
+	Produto p = new Produto();
+	
+	
+	ConexaoServidor con = new ConexaoServidor();
+	Servico s =new Servico();
+
+	String db_ip =  VrProperties.getString("database.ip");
+	int db_porta = VrProperties.getInt("database.porta");
+	String db_nome = VrProperties.getString("database.nome");
+	String db_usuario = VrProperties.getString("database.usuario");
+	String db_senha = VrProperties.getString("database.senha");
+	
+	String token = VrProperties.getString("meta.token");
+	String usuario = VrProperties.getString("meta.usuario");
+	String anbiente = VrProperties.getString("meta.ambierte");
+	String cnpj = VrProperties.getString("meta.cnpj");
+	
+	public String retornaStatus(String ean) {
+		p = s.consultarProduto(cnpj, usuario, ean, anbiente,token);
+		return p.getStatusWeb();
+	}
+	
+	
+	public void salvar(String ean) {
+	
 		try {
 			
 			p = s.consultarProduto(cnpj, usuario, ean, anbiente,token);

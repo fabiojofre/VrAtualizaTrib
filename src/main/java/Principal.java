@@ -87,6 +87,7 @@ public class Principal extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JLabel lbDesc;
+	private JTextField tfStatus;
 	
 
 	/**
@@ -135,20 +136,22 @@ public class Principal extends JFrame {
 				}
 				if(!icms_novo.getText().equals(icms_old.getText())&& !icms_novo.getText().equals("")) {
 				pa.atualizaTribVenda(pr);
-				pdao.retornar(ean);
+				
 				}
-				if(!beneficio_novo.getText().equals(beneficio_old.getText())) {
+				if(!beneficio_novo.getText().equals(beneficio_old.getText())&& !beneficio_old.getText().equals("")) {
 				pa.atualizaBeneficio(pr);
+				}else if(beneficio_old.getText().equals("") && !beneficio_novo.getText().equals("")){
+					pa.cadastraBeneficio(pr);
 				}
+			
+		
 				JOptionPane.showMessageDialog(null, "Atualização efetuada com sucesso!!");
 				btAtualizar.setEnabled(false);
-				
+				voltaEstado();
 		    	}
 			}
 		});
 		
-	
-
 		btAtualizar.setEnabled(true);
 		btAtualizar.setBounds(419, 336, 89, 23);
 		desktopPane.add(btAtualizar);
@@ -176,9 +179,13 @@ public class Principal extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				 ean = tf_barras.getText();
 				if (e.getKeyCode() ==KeyEvent.VK_ENTER) {
+				
 					if(tf_barras.getText().length() >= 8 && tf_barras.getText().length() <= 13) {
 					ProdutoDAO pd = new ProdutoDAO();
+					if( pd.retornaStatus(ean).equals("OK")) {
+					
 					pd.salvar(ean);
+					
 					ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
 					pr = pdao.retornar(ean);
 					
@@ -216,12 +223,20 @@ public class Principal extends JFrame {
 					}else 
 						btAtualizar.setEnabled(true);
 					tf_barras.setText("");
-
-				}else
+					}else {
+						JOptionPane.showMessageDialog(null, "Não foi possível consultar o produto. \n"+"Verifique sua conexão com a internet ou EAN digitado tente novamente mais tarde!");
+						voltaEstado();
+						
+					}
+					
+				}else {
 					JOptionPane.showMessageDialog(null, "Ean digitado não é válido!","Atenção!",JOptionPane.DEFAULT_OPTION);
+					voltaEstado();
+				}
 				}
 			}
 		});
+		
 		
 	
 		tf_barras.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -353,6 +368,32 @@ public class Principal extends JFrame {
 		lbDesc.setBounds(27, 116, 481, 28);
 		desktopPane.add(lbDesc);
 		
+		tfStatus = new JTextField();
+		tfStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		tfStatus.setEditable(false);
+		tfStatus.setBounds(0, 467, 549, 28);
+		desktopPane.add(tfStatus);
+		tfStatus.setColumns(10);
+		
 	}
-
+	private void voltaEstado() {
+		ncm_novo.setForeground(Color.BLACK);
+		cest_novo.setForeground(Color.BLACK);
+		icms_novo.setForeground(Color.BLACK);
+		pis_novo.setForeground(Color.BLACK);
+		beneficio_novo.setForeground(Color.BLACK);
+		
+		tf_barras.setText("");
+		ncm_novo.setText("");
+		ncm_old.setText("");
+		cest_novo.setText("");
+		cest_old.setText("");
+		pis_novo.setText("");
+		pis_old.setText("");
+		icms_novo.setText("");
+		icms_old.setText("");
+		beneficio_novo.setText("");
+		beneficio_old.setText("");
+		lbDesc.setText("");
+	}
 }
