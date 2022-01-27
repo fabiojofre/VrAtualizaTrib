@@ -224,7 +224,7 @@ public class Principal extends JFrame {
 						btAtualizar.setEnabled(true);
 					tf_barras.setText("");
 					}else {
-						JOptionPane.showMessageDialog(null, "Não foi possível consultar o produto. \n"+"Verifique sua conexão com a internet ou EAN digitado tente novamente mais tarde!");
+						JOptionPane.showMessageDialog(null, "Não foi possível consultar o produto. \n"+"Verifique se o EAN foi digitado corretamente!");
 						voltaEstado();
 						
 					}
@@ -299,26 +299,31 @@ public class Principal extends JFrame {
 		panel1_1.setLayout(new GridLayout(5, 1, 2, 0));
 		
 		ncm_old = new JTextField();
+		ncm_old.setHorizontalAlignment(SwingConstants.LEFT);
 		ncm_old.setColumns(10);
 		ncm_old.setEditable(false);
 		panel1_1.add(ncm_old);
 		
 		cest_old = new JTextField();
+		cest_old.setHorizontalAlignment(SwingConstants.LEFT);
 		cest_old.setColumns(10);
 		cest_old.setEditable(false);
 		panel1_1.add(cest_old);
 		
 		pis_old = new JTextField();
+		pis_old.setHorizontalAlignment(SwingConstants.LEFT);
 		pis_old.setColumns(10);
 		pis_old.setEditable(false);
 		panel1_1.add(pis_old);
 		
 		icms_old = new JTextField();
+		icms_old.setHorizontalAlignment(SwingConstants.LEFT);
 		icms_old.setColumns(1);
 		icms_old.setEditable(false);
 		panel1_1.add(icms_old);
 		
 		beneficio_old = new JTextField();
+		beneficio_old.setHorizontalAlignment(SwingConstants.LEFT);
 		beneficio_old.setColumns(1);
 		beneficio_old.setEditable(false);
 		panel1_1.add(beneficio_old);
@@ -329,26 +334,31 @@ public class Principal extends JFrame {
 		desktopPane.add(panel1_2);
 		
 		ncm_novo = new JTextField();
+		ncm_novo.setHorizontalAlignment(SwingConstants.LEFT);
 		ncm_novo.setColumns(10);
 		ncm_novo.setEditable(false);
 		panel1_2.add(ncm_novo);
 		
 		cest_novo = new JTextField();
+		cest_novo.setHorizontalAlignment(SwingConstants.LEFT);
 		cest_novo.setColumns(10);
 		cest_novo.setEditable(false);
 		panel1_2.add(cest_novo);
 		
 		pis_novo = new JTextField();
+		pis_novo.setHorizontalAlignment(SwingConstants.LEFT);
 		pis_novo.setColumns(10);
 		pis_novo.setEditable(false);
 		panel1_2.add(pis_novo);
 		
 		icms_novo = new JTextField();
+		icms_novo.setHorizontalAlignment(SwingConstants.LEFT);
 		icms_novo.setColumns(1);
 		icms_novo.setEditable(false);
 		panel1_2.add(icms_novo);
 		
 		beneficio_novo = new JTextField();
+		beneficio_novo.setHorizontalAlignment(SwingConstants.LEFT);
 		beneficio_novo.setColumns(1);
 		beneficio_novo.setEditable(false);
 		panel1_2.add(beneficio_novo);

@@ -1,8 +1,7 @@
 
-import javax.swing.JOptionPane;
-
-import br.com.vrrecife.dominio.Produto;
-import br.com.vrrecife.servico.Servico;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -23,8 +22,18 @@ public class Teste {
 //    	ProdutoAtualiza pa = new ProdutoAtualiza();
 //    	pa.ataluzaBeneficio();
     	
-    	Object[] options = {"Atualizar","Cancelar"};
-    	int valor = JOptionPane.showOptionDialog(null, "Esse processo não poderá ser desfeito!! \n"+"Deseja continuar?", "Atenção!!",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-    	System.out.println(valor);
+//    	Object[] options = {"Atualizar","Cancelar"};
+//    	int valor = JOptionPane.showOptionDialog(null, "Esse processo não poderá ser desfeito!! \n"+"Deseja continuar?", "Atenção!!",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+//    	System.out.println(valor);
+    	Calendar c = Calendar.getInstance();
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    	String dataFormatada = formatter.format(c.getTime());
+    	System.out.println(dataFormatada);
+    	
+    	String dia = dataFormatada.substring(0,2);
+    	String mes = dataFormatada.substring(3,5);
+		String ano = dataFormatada.substring(8,10);
+		
+		System.out.println("VR"+Integer.parseInt(mes)+dia+ano+"OFT");
     }
 }

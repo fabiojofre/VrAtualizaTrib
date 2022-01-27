@@ -35,7 +35,9 @@ public class ProdutoDAO {
 	String cnpj = VrProperties.getString("meta.cnpj");
 	
 	public String retornaStatus(String ean) {
+		String temp;
 		p = s.consultarProduto(cnpj, usuario, ean, anbiente,token);
+		
 		return p.getStatusWeb();
 	}
 	

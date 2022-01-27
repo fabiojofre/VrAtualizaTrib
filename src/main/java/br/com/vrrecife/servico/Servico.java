@@ -1,5 +1,7 @@
 package br.com.vrrecife.servico;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONObject;
 
 import br.com.vrrecife.dominio.Produto;
@@ -46,6 +48,9 @@ public class Servico {
 			 JSONObject produtos = new JSONObject(jsonEmString);
 			 
 			codSucesso =  response.message();
+			
+				
+			
 			 
 			  p = new Produto();
 			 
@@ -130,8 +135,10 @@ public class Servico {
 			 System.out.println(Util.retornaRegrasTributariasE(produtos));
 			// String temp = produtos.getJSONArray("dadosLogisticos").get(0);
 			//System.out.println(codSucesso);
+			
 		}catch (Exception e) {
 			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Webservice Temporariamente dora do ar! \n"+ "Tente novamente mais tarde!");
 		}
 			return p;
 	}
