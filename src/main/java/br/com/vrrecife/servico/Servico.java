@@ -138,7 +138,7 @@ public class Servico {
 			
 		}catch (Exception e) {
 			// TODO: handle exception
-			JOptionPane.showMessageDialog(null, "Webservice Temporariamente dora do ar! \n"+ "Tente novamente mais tarde!");
+			
 		}
 			return p;
 	}
