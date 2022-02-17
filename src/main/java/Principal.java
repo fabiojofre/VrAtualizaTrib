@@ -167,7 +167,7 @@ public class Principal extends JFrame {
 		});
 		btnNewButton.setForeground(Color.LIGHT_GRAY);
 		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/vrrecifeframework/img/config.png")));
-		btnNewButton.setBounds(503, 0, 46, 54);
+		btnNewButton.setBounds(493, 0, 46, 54);
 		desktopPane.add(btnNewButton);
 		
 		tf_barras = new JTextField();

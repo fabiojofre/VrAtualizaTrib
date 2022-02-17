@@ -165,12 +165,10 @@ public class Config extends JFrame {
 				VrProperties.setProperty("database.porta", tf_porta.getText());
 				VrProperties.setProperty("database.usuario", tf_userDb.getText());
 				VrProperties.setProperty("database.senha", tf_senhaDb.getPassword().toString());
-				VrProperties.setProperty("redecen.usuario", tf_usuario.getText());
-				VrProperties.setProperty("redecen.cnpj", tf_cnpj.getText());
-				VrProperties.setProperty("redecen.senha", tf_ambiente.getText());
-				VrProperties.setProperty("redecen.minutos_consulta", tf_token.getText());
-				VrProperties.setProperty("redecen.id_banco", tf_cnpj.getText());
-				VrProperties.setProperty("redecen.agencia", tf_usuario.getText());
+				VrProperties.setProperty("meta.ambierte", tf_ambiente.getText());
+				VrProperties.setProperty("meta.token", tf_token.getText());
+				VrProperties.setProperty("meta.cnpj", tf_cnpj.getText());
+				VrProperties.setProperty("meta.usuario", tf_usuario.getText());
 				
 				JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso!");
 				
