@@ -27,6 +27,7 @@ import br.com.vrrecife.repository.ProdutoDAO;
 import br.com.vrrecife.repository.ProdutoRetornoDAO;
 import br.com.vrrecife.servico.Servico;
 import br.com.vrrecife.util.RecebeSoNumeros;
+import br.com.vrrecife.util.Util;
 import vrrecifeframework.classes.VrProperties;
 
 
@@ -183,12 +184,12 @@ public class Principal extends JFrame {
 					if(tf_barras.getText().length() >= 8 && tf_barras.getText().length() <= 13) {
 					ProdutoDAO pd = new ProdutoDAO();
 					if( pd.retornaStatus(ean).equals("OK")) {
-					
+						
 					pd.salvar(ean);
 					
 					ProdutoRetornoDAO pdao = new ProdutoRetornoDAO(); 
 					pr = pdao.retornar(ean);
-					
+					//JOptionPane.showMessageDialog(null, Servico.resultadoConsulta);
 					if(!pr.getNcm_novo().equals(pr.getNcm_old())) {
 						ncm_novo.setForeground(Color.red);
 					}
@@ -224,7 +225,7 @@ public class Principal extends JFrame {
 						btAtualizar.setEnabled(true);
 					tf_barras.setText("");
 					}else {
-						JOptionPane.showMessageDialog(null, "Não foi possível consultar o produto. \n"+"Verifique se o EAN foi digitado corretamente!");
+						JOptionPane.showMessageDialog(null, "Limite diário de consultas ultrapassado!!","Atenção!",JOptionPane.DEFAULT_OPTION);
 						voltaEstado();
 						
 					}

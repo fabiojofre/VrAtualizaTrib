@@ -37,9 +37,9 @@ public class Util {
 			JSONObject j = json.getJSONArray("regrasTributarias").getJSONObject(i);
 			if (j.getString("tribRegraCfop").substring(0, 1).equals("5")
 					|| j.getString("TribRegraPerfilDestino").equals("CONSUMIDOR NAO CONTRIBUINTE")) {
-				dados = j;
-			} else
-				dados = json.getJSONArray("regrasTributarias").getJSONObject(0);
+				dados = json.getJSONArray("regrasTributarias").getJSONObject(i);
+			} //else
+				//dados = json.getJSONArray("regrasTributarias").getJSONObject(0);
 		}
 
 		return dados;
@@ -58,6 +58,12 @@ public class Util {
 				dados = json.getJSONArray("regrasTributarias").getJSONObject(1);
 		}
 
+		return dados;
+	}
+	
+	public static String retornaResultadoConsulta(JSONObject json) {
+//		 Extrai apenas o array do bloco dados tributários do JSon 		
+		String dados = json.getString("resultadoConsulta");
 		return dados;
 	}
 

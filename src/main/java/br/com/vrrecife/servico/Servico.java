@@ -15,7 +15,7 @@ import okhttp3.Response;
 public class Servico {
 	static String webService = "http://metaassessoria2.ddns.net:23145";
 	public static String codSucesso;
-	
+	public static String resultadoConsulta;
 
 	
 	public static Produto consultarProduto(String cnpj, String usuario,String ean,String ambiente, String token) {
@@ -45,7 +45,9 @@ public class Servico {
 			 JSONObject jsonObject = new JSONObject(response.body().source().readUtf8());
 			 String jsonEmString = jsonObject.toString(4);
 			 
-			 JSONObject produtos = new JSONObject(jsonEmString);
+			 JSONObject produtos = new JSONObject(jsonEmString);//precisa trabalhar nesse campo como retrno
+			 
+			 
 			 
 			codSucesso =  response.message();
 			
@@ -126,8 +128,9 @@ public class Servico {
 					p.setResultadoConsulta(produtos.getString("resultadoConsulta"));
 					p.setStatusWeb(codSucesso);
 					
-			// System.out.println(p.toString());
-			 
+			//System.out.println(p.toString());
+				
+		
 			 System.out.println(Util.retornaProduto(produtos));
 			 System.out.println(Util.retornaDadosLogisticos(produtos));
 			 System.out.println(Util.retornaDadosTributarios(produtos));
@@ -141,6 +144,7 @@ public class Servico {
 			
 		}
 			return p;
+			
 	}
 	
 }

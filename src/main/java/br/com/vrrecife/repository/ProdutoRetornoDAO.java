@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import br.com.vrrecife.dominio.ProdutoRetorno;
 import conexao.ConexaoServidor;
+import vrrecifeframework.classes.VrProperties;
 
 public class ProdutoRetornoDAO {
 
@@ -20,7 +21,7 @@ public class ProdutoRetornoDAO {
 	public ProdutoRetorno retornar(String ean) {
 		try {
 			
-			con.abrirConexao("localhost", 8745, "schweikardt", "postgres", "VrPost@Server");
+			con.abrirConexao(VrProperties.getString("database.ip"), 8745, VrProperties.getString("database.nome"), "postgres", "VrPost@Server");
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, ean);

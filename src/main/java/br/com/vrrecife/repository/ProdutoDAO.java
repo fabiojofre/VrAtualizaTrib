@@ -41,6 +41,14 @@ public class ProdutoDAO {
 		return p.getStatusWeb();
 	}
 	
+	public String retornaResultadoConsulta(String ean) {
+		String temp;
+		p = s.consultarProduto(cnpj, usuario, ean, anbiente,token);
+		
+		return p.getResultadoConsulta();
+	}
+	
+	
 	
 	public void salvar(String ean) {
 	
